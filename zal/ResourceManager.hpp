@@ -8,10 +8,22 @@ class ResourceManager
      Resource* data;
 
 public:
-    ResourceManager() { data = new Resource; }
-    ~ResourceManager() { delete data; }
-    double get() { return data->get(); }
-    ResourceManager(const ResourceManager& x) { data = new Resource{*x.data}; }
+    ResourceManager() 
+    { 
+        data = new Resource; 
+    }
+    ~ResourceManager() 
+    { 
+        delete data; 
+    }
+    double get() 
+    { 
+        return data->get(); 
+    }
+    ResourceManager(const ResourceManager& x) 
+    { 
+        data = new Resource{*x.data}; 
+    }
     ResourceManager& operator=(const ResourceManager& x)
     {
         if (this != &x) {
@@ -20,12 +32,12 @@ public:
         }
         return *this;
     }
-    ResourceManager(const ResourceManager&& x)
+    ResourceManager(ResourceManager&& x)
     {
         data   = x.data;
         x.data = nullptr;
     }
-    ResourceManager& operator=(const ResourceManager&& x)
+    ResourceManager& operator=(ResourceManager&& x)
     {
         if (this != &x) {
             delete data;
